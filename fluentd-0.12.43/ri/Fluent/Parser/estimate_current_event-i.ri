@@ -1,0 +1,2 @@
+U:RDoc::Attr[iI"estimate_current_event:ETI"*Fluent::Parser#estimate_current_event;TI"RW;T:publico:RDoc::Markup::Document:@parts[o:RDoc::Markup::Paragraph;	[I"DSET false BEFORE CONFIGURE, to return nil when time not parsed ;TI"A'configure()' may raise errors for unexpected configurations;T:
+@fileI"lib/fluent/parser.rb;T:0@omit_headings_from_table_of_contents_below0F@I"Fluent::Parser;TcRDoc::NormalClass0
