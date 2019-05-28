@@ -1,0 +1,156 @@
+require_relative '../helper'
+require 'fluent/test'
+require 'net/http'
+
+class ExecInputTest < Test::Unit::TestCase
+  def setup
+    Fluent::Test.setup
+    @test_time = Time.parse("2011-01-02 13:14:15").to_i
+    @script = File.expand_path(File.join(File.dirname(__FILE__), '..', 'scripts', 'exec_script.rb'))
+  end
+
+  def create_driver(conf = tsv_config)
+    Fluent::Test::InputTestDriver.new(Fluent::ExecInput).configure(conf)
+  end
+
+  def tsv_config
+    %[
+      command ruby #{@script} "2011-01-02 13:14:15" 0
+      keys time,tag,k1
+      time_key time
+      tag_key tag
+      time_format %Y-%m-%d %H:%M:%S
+      run_interval 1s
+    ]
+  end
+
+  def json_config
+    %[
+      command ruby #{@script} #{@test_time} 1
+      format json
+      tag_key tag
+      time_key time
+      run_interval 1s
+    ]
+  end
+
+  def msgpack_config
+    %[
+      command ruby #{@script} #{@test_time} 2
+      format msgpack
+      tag_key tagger
+      time_key datetime
+      run_interval 1s
+    ]
+  end
+
+  def regexp_config
+    %[
+      command ruby #{@script} "2011-01-02 13:14:15" 3
+      format /(?<time>[^\\\]]*) (?<message>[^ ]*)/
+      tag regex_tag
+      run_interval 1s
+    ]
+  end
+
+  def invalid_json_config
+    # For counting command execution, redirect stderr to file
+    %[
+      command ruby #{@script} #{@test_time} 4
+      format json
+      tag_key tag
+      time_key time
+      run_interval 0.5
+    ]
+  end
+
+  def test_configure
+    d = create_driver
+    assert_equal 'tsv', d.instance.format
+    assert_equal ["time","tag","k1"], d.instance.keys
+    assert_equal "tag", d.instance.tag_key
+    assert_equal "time", d.instance.time_key
+    assert_equal "%Y-%m-%d %H:%M:%S", d.instance.time_format
+  end
+
+  def test_configure_with_json
+    d = create_driver json_config
+    assert_equal 'json', d.instance.format
+    assert_equal [], d.instance.keys
+  end
+
+  def test_configure_with_msgpack
+    d = create_driver msgpack_config
+    assert_equal 'msgpack', d.instance.format
+    assert_equal [], d.instance.keys
+  end
+
+  def test_configure_with_regexp
+    d = create_driver regexp_config
+    assert_equal '/(?<time>[^\]]*) (?<message>[^ ]*)/', d.instance.format
+    assert_equal 'regex_tag', d.instance.tag
+  end
+
+  # TODO: Merge following tests into one case with parameters
+
+  def test_emit
+    d = create_driver
+
+    d.run do
+      sleep 2
+    end
+
+    emits = d.emits
+    assert_equal true, emits.length > 0
+    assert_equal ["tag1", @test_time, {"k1"=>"ok"}], emits[0]
+  end
+
+  def test_emit_json
+    d = create_driver json_config
+
+    d.run do
+      sleep 2
+    end
+
+    emits = d.emits
+    assert_equal true, emits.length > 0
+    assert_equal ["tag1", @test_time, {"k1"=>"ok"}], emits[0]
+  end
+
+  def test_emit_msgpack
+    d = create_driver msgpack_config
+
+    d.run do
+      sleep 2
+    end
+
+    emits = d.emits
+    assert_equal true, emits.length > 0
+    assert_equal ["tag1", @test_time, {"k1"=>"ok"}], emits[0]
+  end
+
+  def test_emit_regexp
+    d = create_driver regexp_config
+
+    d.run do
+      sleep 2
+    end
+
+    emits = d.emits
+    assert_equal true, emits.length > 0
+    assert_equal ["regex_tag", @test_time, {"message"=>"hello"}], emits[0]
+    assert_equal @test_time, emits[0][1]
+  end
+
+  def test_emit_with_invalid_script
+    d = create_driver invalid_json_config
+
+    d.run do
+      sleep 2
+    end
+
+    assert_equal true, d.emits.empty?
+    logs = d.instance.log.logs
+    assert_equal true, logs.count { |line| line =~ /exec failed to run or shutdown child process/ }.between?(1, 4)
+  end
+end

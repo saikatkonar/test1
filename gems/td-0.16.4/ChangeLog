@@ -1,0 +1,1112 @@
+== 2018-12-03 version 0.16.4
+
+* Support engine versions for query and schedule (EXPERIMENTAL) #216
+
+== 2018-11-21 version 0.16.3
+
+* Support running status of job for td export:result command #207
+* Support eu01 region #211
+* Use Ruby 2.4.5 #215
+
+== 2018-04-24 version 0.16.2
+
+* repackage Windows td-toolbelt (no code change)
+
+== 2018-04-17 version 0.16.1
+
+* Use x64 binary #206
+  td-toolbelt on Windows is migrated to x64 version.
+  Now this doesn't work on 32bit version of Windows.
+
+== 2018-04-14 version 0.16.0
+
+* Add retry_limit and priority to export:result #203
+* Remove auto td update #204
+  Now `td update` needs manually executed to update td CLI.
+* bump toolbelt version #205
+  v0.16 doesn't support upgrade from v0.15 or prior by `td update`.
+  To use v0.16, please download td-toolbelt package and install with it.
+
+== 2018-04-04 version 0.15.9
+
+* Use td-client-ruby 1.0.6
+* Use Ruby 2.4.4 #202
+
+== 2018-01-22 version 0.15.8
+
+* table:update to update table options #196
+* Avoid extra API call on job:list #199
+* td workflow supports non US region and Private Connect #197 #198
+* fix sched:history -p causes missing one record #195
+
+== 2017-10-24 version 0.15.7
+
+* Support workflow on aws tokyo #94
+
+== 2017-09-21 version 0.15.6
+
+* Update td-client gem dependency to 1.0.4
+
+== 2017-07-26 version 0.15.5
+
+* use Ruby 2.2.8 #193
+* fix table_delete wording #192
+
+== 2017-07-26 version 0.15.4
+
+* Fix the wrong handling of HTTP redirection #186
+* Avoid exception on downloading digdag #187
+* fix raise_error is not defined #188
+* Use paralle.gem 1.x #190
+
+== 2017-06-08 version 0.15.3
+
+* add jsonl.gz format #153
+* add workflow:update command #178
+
+== 2016-11-29 version 0.15.2
+
+* Deprecate Pig query engine #172
+* Add export:result and export:table #175
+
+== 2016-10-20 version 0.15.1
+
+* Add --wait[=SECONDS] to query subcommand #171
+* Drop Ruby 2.0.0 support
+* Show sql_alias if exist #170
+
+== 2016-09-06 version 0.15.0
+
+* Add `td workflows` command. #167
+* Add `td connector:update` options to allow configuring several additional data connector settings. #127 #155
+
+== 2016-07-11 version 0.14.1
+
+* Use td-client-ruby v0.8.82
+  * Add conflicts_with to AlreadyExistError (treasure-data/td-client-ruby#84)
+  * Rewrite job_result_download logic (treasure-data/td-client-ruby#85)
+
+== 2016-04-25 version 0.14.0
+
+* Use parallel v1.8.0 #161
+* Support `td query --domain-key=KEY` #157
+* Add encryption of export worker #156 #159
+* Support dummy schedule #152
+* output bulkload config with `td job:show` #151
+* fix: make jar_update more solid #150
+
+== 2016-01-25 version 0.13.2
+
+* Replace Infinity and NaN inside Array or Hash
+* fix command line arguments handling on Windows
+
+== 2015-12-14 version 0.13.1
+
+* fix table:import with no '-t' or '--time-key' option
+* fix show names on connector:list
+* fix create unnecessary file in spec
+
+== 2015-10-29 version 0.13.0
+
+* fix command error when recive 40X errror from server
+* support show config_diff in connector:[list,show,create,delete]
+* add new command `table:rename`. This command can rename table.
+* fix connector:history crash if history has queueing state.
+* fix connector:run time argument bug.
+* support query, job:show write Hash format JSON. If you use it, you set --column-header and -f json options.
+* change default file name create by connector:guess rename to `config.yml`.
+* remove --exclude option from connector:issue
+* support --g option for connector:config. It can specified guess plugin.
+* improve progressbar
+* support filter section for config file.
+* remove --primary-key option from table:create
+
+== 2015-08-10 version 0.12.0
+
+* Improve error message from APIError
+  split API backtrace from error message
+* Update Toolbelt Ruby version to 2.2.2.
+  So, can't `td update` from td version 0.11.14.
+  Please, re-install.
+
+== 2015-08-03 version 0.11.14
+
+* fix connector:history was broken.
+
+== 2015-07-29 version 0.11.13
+
+* allow retry when `td query -w` fail show result.
+* `connector:issue` create database and table if use `--auto-create-table`
+
+== 2015-07-27 version 0.11.12
+
+* query command support msgpack.gz format save
+* fix `--format msgpack.gz` save gz format.
+  If you want the operation up to this, please use `--format msgpack`.
+* update td-client version.
+  This update is required in order to be able to save in gz format.
+  And, include update httpclient dependency version.
+
+== 2015-07-23 version 0.11.11.2
+
+* downgrade bundle ruby version for windows(2.2.2 -> 1.9.3).
+* downgrade dependency td-client version (0.8.71 -> 0.8.70).
+
+== 2015-07-16 version 0.11.11.1
+
+* fix: broken the connector:issue command.
+* Version Down bundled Ruby for Mac.
+
+== 2015-07-10 version 0.11.11
+
+* Updated 'td-client' gem dependency to 0.8.71. The new gem removed to/from
+  parameter from table/tail API.
+* Version up bundled Ruby for Mac and Windows.
+* Remove -t (to) and -f (from) from table:tail command.
+* connector:guess shows help message if no arguments are set.
+* table:* unsupported 'item' table.
+* upgrade rubyzip
+
+== 2015-05-19 version 0.11.10
+
+* Updated 'td-client' gem dependency to 0.8.70. The new gem removed client
+  side validation for connector commands to allow additional plugin configs
+  we're going to add in the future.
+* connector:guess dumps configuration file to stdout that is guessed by the
+  server to check the config file easier.
+* connector:preview shows full column name (not truncated) in the table.
+* add --pool-name option to job registration.
+* add sched:result command to show job results for a saved query.
+* save to temporary file while downloading job result in job:show.
+* show job duration in job list.
+
+== 2015-04-17 version 0.11.9
+
+* add connector commands.
+* add tsv.gz format to export command.
+* add --null option to job:show that specifies what character to represent
+  null value in csv or tsv format. It emits 'null' by default for backward
+  compatibility but you can specify '--null ""' to use empty string instead
+  of 'null'.
+* fix: remove illegal TAB character at the end of header record. Thanks y-ken!
+* fix: do fancy format of numbers in table:list only if format is 'table'.
+* fix: job:show to convert NaN to empty String if format is csv or tsv. The
+  column data NaN, Infinity and -Infinity caused an error if previous
+  versions.  If json format is specified it still raises an error because JSON
+  format does not have representation of those values.
+* fix: internal cwd handling for auto jar update that caused import:upload to
+  fail by changing cwd before reading specified file.
+* fix: table:list to consider import_only databases. It just skips such
+  databases and no longer crashes with insufficient permission.
+
+== 2015-02-20 version 0.11.8
+
+* Fix: save CSV/TSV file without transcoding.
+
+  The fix in 9d74b44b533878ee5f2a84db3506279f87f85bef at 0.11.7 broke the
+  job:show command when the download format is CSV or TSV and the target
+  query result contains non UTF-8 encoded byte sequence.
+
+  0.11.6 and before does transcoding and *sanitizes* non UTF-8 byte
+  sequence before saving to file. So the generated file is always in
+  UTF-8, but could be broken when query result is not in UTF-8.
+
+  0.11.7 simply removes that transcoding logic by
+  9d74b44b533878ee5f2a84db3506279f87f85bef for performance and crashes for
+  non UTF-8 encoded byte sequence.
+
+  This release fixes 0.11.7 and saves non UTF-8 encoded byte sequence
+  as-is (through 'BINARY' encoding) so that the generated file should be
+  properly encoded in UTF-8, Shift_JIS, or whatever.
+
+== 2015-02-16 version 0.11.7
+
+* Fix server:endpoint command not working
+* Experimental new feature: timeout for import subcommands.  To prevent Java
+  process stall this option allows user to specify maximum execution seconds
+  for import subcommands by --bulk-import-timeout option. When execution
+  exceeds specified seconds the command fails after sending SIGQUIT to
+  internal java process if it's not running on Windows.
+  NOTE1: the execution time is measured against all subcommand execution. If
+  the command parameter designates perform and commit execution the whole
+  time could be longer than just uploading part files.
+  NOTE2: this option is not shown in help at this moment.
+* Show full query text for CSV, TSV, and JSON output format (It's now only
+  truncated in table format)
+* msgpack.gz to CSV/TSV perf optimization. It should be faster around 2 times
+  than before.
+* Allow to disable table data expiration by setting the period to 0.
+* Fix sched:history crash when scheduled_at == ""
+* Several spec fixes. Thanks @yakitorii!
+
+== 2014-12-03 version 0.11.6
+
+* Support HTTP proxy for bulk import
+
+== 2014-10-16 version 0.11.5
+
+* Updated 'td-client' gem dependency to 0.8.66. The new gem addresses the
+  recently exposed SSLv3 'Poodle' vulnerability by upgrading both the HTTPClient
+  dependency and patching the Net::HTTP gem to force SSLv3 disabled.
+
+== 2014-09-25 version 0.11.4
+
+* Expand file path containing wildcards and not escaped by the underlying shell
+* Add a global '-r / --retry-post-requests' option to enable the td-client-ruby
+  retrying mechanism for post request.
+  Note: -r option must be right after 'td' before subcommands like: td -r query
+  WARNING: enabling this option can lead to unexpected results because the
+  retrying mechanism can caused the creation of duplicated resources since the
+  POST methods are not idempotent.
+
+== 2014-07-31 version 0.11.3
+
+* Support name updates for schedules using sched:update command
+* Update Bulk Import JAR file repository to Central Maven Repository where
+  the Bulk Import JAR file is now hosted
+* Require Ruby v1.9 or superior for td to work ==> deprecated Ruby v1.8
+* Limit the number of keys in the input file (JSON, Msgoack) that can be
+  imported in one import to 512 as per the backend's limitations
+* Fixed import:create to work with import-only permissions and write-only API
+  keys
+* Handle NotFoundError, AuthError, and ForbiddenError to suppress printing of
+  the exception stack traces but yet show the exception class name for reference
+  back to the actual HTTP error code
+* validate the endpoints provided by -e / --endpoint using the Health-check
+  REST API /v3/system/server_status. Validation is avoided for any command
+  that does not require connectivity with the Treasure Data REST API server
+* JAR update errors are ignored when running import:prepare. This command
+  does not require connectivity and can be ran even when the machine is not
+  connected to the internet
+* Fixed Time based progress indicator to reflect the update interval exactly
+* Read logging.properties Logging configuration file from ~/.td/java first,
+  then the td repository's location (default). This allows customization of
+  the logging for the Java Bulk Import CLI (td-import-java).
+* Improve job result downloading by showing the total downloaded size and
+  percentage progress (Size based progress indicator). This is done when
+  printing the result in tabular format or writing the result on file in csv,
+  tsv, json, msgpack, or msgpack.gz formats. When displaying the result in csv,
+  tsv, and json format on stdout, the progress indicator is not used since the
+  data is progressively streamed in as it's received from the API server
+
+== 2014-06-18 version 0.11.2
+
+* Improve the update experience by showing a download progress indicator
+* Fix issue on Windows OS where the JAR version file handle was not closed
+  and caused permissions access problems to the file in subsequent attempts
+  to open the file
+* Add support for other/alternative backends using the -e / --endpoint
+  option. The backend can be also saved on the configuration file of use
+  via the 'td server:endpoint' or when running 'td -e <newendpoint> account'
+  command. The TD_API_SERVER environment variable still takes precedence
+  over all these settings
+* Removed Treasure Data Result Output database and table name client side
+  validation since it's performed in the API backend
+* Suppress stack traces for APIError exceptions from the client library
+* Changed the default HTTP port from 80 to 443 when interacting with the API
+  server to support SSL
+* Support working entirely without a configuration file (hence without
+  having to run 'td account' prior to using the CLI) by passing the -k option
+  on the command line
+* don't wipe out the current JAR file if an attempt to retrieve the most updated
+  JAR file failed because of network connectivity problems
+* Show the job result only for finished jobs: unfinished jobs don't have any
+  result to display anyway)
+* Honor the HTTP_PROXY setting also when updating the JAR file or the Toolbelt
+  itself
+* Fix parsing of the HTTP_PROXY variable for the Bulk Loader's usage
+* Allow optionally disabling the JAR file auto-update feature by setting the
+  TD_TOOLBELT_JAR_UPDATE environment variable to 0
+
+== 2014-04-29 version 0.11.1
+
+* Fix Treasure Data query result output database and table validation
+  regular expression
+* Fixed auto updater which threw a warning due to a constant being
+  reinitialized
+* Interpret the CPU time as number of milliseconds as opposed to
+  number of seconds in the job:show output
+* when outputting the query result to file, flush the data every
+  100 records
+
+== 2014-04-23 version 0.11.0
+
+* Show cumulative CPU time in the job:list and job:show outputs
+* The error message when the specified schema has columns containing upper case
+  alphanumeric characters is improved to be more representative of the problem
+* 'td query' commands with result output to Treasure Data (--result td://xxxx)
+  validate the database and table naming convention before running the query
+* The Java bulk import JAR file is now auto-updated. Checking for an updated
+  version is performed hourly
+* 'td query' commands with result output specification invite the user to use
+  the '-x / --exclude' option to avoid outputting the query result to stdout as
+  well
+* The 'Destination' field in the summary for the Bulk import perform output
+  from the jobs:show command contains the destination table name in the form of
+  a LOAD DATA SESSION query
+* Returning the correct non-zero error codes in the occurrence of an exception
+* Declare the 'td query' option '--sampling' obsolete. A warning indicating the
+  option is obsolete and has no effect will be printed to warn the user
+
+== 2014-02-26 version 0.10.99
+
+* job:show, query: limit the number of records ouputted when printing on stdout using the -l / --limit option
+* job:show, query: optionally output/store csv and tsv files with headers using the -c / --column-names option
+* job:show, query: support result output from Presto
+
+== 2014-02-21 version 0.10.98
+
+* import:unfreeze: fixed NoMethodError error
+* import:show uses more efficient REST API
+* Update td-client-ruby to 0.8.57
+
+
+== 2013-12-18 version 0.10.97
+
+* import:commit accepts --wait option.
+* import:jar_update command to download correct jar file
+* Fix no error message when impala query failed immediately
+
+
+== 2013-12-04 version 0.10.96
+
+* Add --format option to some subcommands to specify render format. json, csv and tsv.
+* job:show and query subcommand now accept --format option without --output
+* Show -k option in command result message if -k option is given.
+* Support import:jar_update subcommand to update td-import separately
+
+
+== 2013-11-20 version 0.10.95
+
+* Fix import:prepare command. It cannot parse time-format options that includes ',' charactor.
+* Fix import:upload command. It cannot re-upload data by the problem of retry mechanism.
+
+
+== 2013-11-14 version 0.10.94
+
+* Update td-client-ruby to 0.8.56
+
+
+== 2013-11-14 version 0.10.93
+
+* Improve import:prepare command. 'all-string' option is added.
+* Fix import:prepare command. NumberFormatException often occurs. (When sample method in CSVFileReader class is executed. SimpleDateFormat objects are used in non synchronized block.)
+* Fix import:prepare command. There are incompatibility with bulk_import command regarding 'NULL' string.
+* Fix import:prepare command. NullPointerException occurs when unknown column type is specified as 'column-types' option.
+* Support item type in table:create
+* Remove organization, role and ip_limit subcommands
+* Enable query result download even if job status is error
+
+
+== 2013-11-05 version 0.10.92
+
+* Improve import commands. It can parse string values of 'HH:mm:ss' time format automatically without specifying '%T' and transfer into long Unix timestamp.
+* Improve import commands. It can parse string values of 'yyyy/MM/dd HH:mm:ss' time format automatically without specifying 'time-format' and transfer into long Unix timestamp.
+* Improve import commands. It can parse string values of 'yyyy/MM/dd HH:mm:ss Z' time format automatically without specifying 'time-format' and transfer into long Unix timestamp.
+* Add 'regexp' to source file format option of import:prepare command.
+* Fix import:upload command. NullPointerException often occurs when data files are uploaded.
+
+
+== 2013-10-04 version 0.10.91
+
+* Fix import command doesn't work on Windows
+
+
+== 2013-10-02 version 0.10.90
+
+* Fix table:import permission error with sub user
+* Fix import:prepare command. NullPointerException occurred when value of 'time' column was null.
+* Fix import:prepare command. 'time' column parser was not  thread-safe.
+* Improve import:prepare command. Users can use %L in 'time-format' as milliseconds representation.
+* Improve help message of import:auto command
+
+
+== 2013-09-25 version 0.10.89
+
+* Update td-bulk-import.jar to 0.2.5
+* import command now support nested json format
+
+
+== 2013-09-13 version 0.10.88
+
+* Update td-client-ruby to 0.8.55
+* Update td-bulk-import.jar to 0.2.4
+* Add import:java_version subcommand to show bundled td-bulk-import-java version
+
+
+== 2013-09-05 version 0.10.87
+
+* Add auto-delete option to import:auto subcommand
+* Update td-bulk-import.jar to 0.2.2
+
+
+== 2013-08-26 version 0.10.86
+
+* Improve bulk_import and import command explanation
+* Add import:auto subcommand
+
+
+== 2013-08-23 version 0.10.85
+
+* Fix 'undefined method job_priority_id_of' error
+* Add table:expire_days subcommand
+* Update bulk-import-java to 0.2.1
+* Add import command to support new bulk import
+
+
+== 2013-07-25 version 0.10.84
+
+* bulk_import now checks first argument is correct session name
+* Convert bignum into string type. Please use cast in your query.
+* Improve error message of export -F option
+* td-client v0.8.53
+
+
+== 2013-07-03 version 0.10.83
+
+* Add -x option to query, exlude result from automatically being downloaded
+* Update td-bulk-import-java to 0.2.0-snapshot
+* Add line-json.gz format to bulk_export
+
+
+== 2013-06-24 version 0.10.82
+
+* table:list shows 'last log timestamp' column
+
+
+== 2013-06-17 version 0.10.81
+
+* 0.10.80 is yanked because rubygems is unstable and rubygems generates broken gem
+
+
+== 2013-06-17 version 0.10.80
+
+* Relax dependent gem version
+
+
+== 2013-06-13 version 0.10.79
+
+* -h option shows --version option
+* Show more messages when network related error occurred
+* Fix bulk import encoding issue when -e option is specified
+* Add user:apikey:add subcommand
+* Add user:apikey:remove subcommand
+
+
+== 2013-05-27 version 0.10.78
+
+* Add -q(--query) option to sched:create command
+* Add -x option to job:show, exclude result from automatically being downloaded
+* Update parallel gem dependency to 0.6.1 or later
+* user:add now requires email and password
+* td-client v0.8.50
+
+
+== 2013-05-06 version 0.10.77
+
+* Fix 'invalid byte sequence in UTF-8' at job result writing to CSV
+* Fix installed version check mechanism of auto updater
+* Remove using curses to detect terminal height for Windows unexpected behavior
+* Set User-Agent header
+
+
+== 2013-04-22 version 0.10.76
+
+* Add auto update feature for td-toolbelt
+* Add -T to specify query type
+* Include Ruby binary for Mac TD toolbelt
+* td-client v0.8.48
+
+
+== 2013-04-09 version 0.10.75
+
+* Fix unparsed regexp pattern in Ruby 1.8
+* Move gems directory into under vendor directory
+
+
+== 2013-03-29 version 0.10.74
+
+* Include zsh and bash completion
+* Use SSL by default
+* Add --insecure option to disable SSL
+* Add IP limitation features:
+  * ip_limit:set <org> <ip_range...>
+  * ip_limit:delete <org>
+  * ip_limit:list
+  * ip_limit:show <org>
+* td-client v0.8.46
+
+== 2013-03-15 version 0.10.73
+
+* Add --sampling option to query subcommand
+* Add --show-bytes option to table:list subcommand
+* Update README and Rakefile for td-toolbelt building
+* Show warn message if table name is Hive reserved keyword
+
+
+== 2013-02-27 version 0.10.72
+
+* Add -q(--query) option to query subcommand
+* Hide password input on Windows
+* 'td help sample' is now available
+
+== 2013-02-05 version 0.10.71
+
+* bulk_import:upload_parts: improved retry algorithm to use exponential wait time
+* bulk_import:upload_parts: improved error messages
+
+
+== 2013-01-25 version 0.10.70
+
+* Add status to job subcommand, td job:status job_id
+* td-client v0.8.45
+
+
+== 2013-01-23 version 0.10.69
+
+* Fixed the undefined local variable problem of table:list when no databases
+* Add --org option to some subcommands
+* td-client v0.8.43
+
+
+== 2013-01-22 version 0.10.68
+
+* Fixed command-line argument handling problems of
+  bulk_import:prepare_parts2 subcommand
+
+
+== 2013-01-18 version 0.10.67
+
+* Added bulk_import:prepare_parts2 subcommand which is faster and more reliable
+
+
+== 2013-01-16 version 0.10.66
+
+* td-client v0.8.42
+* query, sched:create, sched:update subcommands support -R, --retry option
+
+
+== 2012-12-27 version 0.10.65
+
+* td-client v0.8.40
+* Use Yajl.dump instead of to_json to avoid invalid encoding problem.
+* Fix table:list displays broken database list in Ruby 1.8
+* Fix -e option handling in bulk_import
+* Add 'Last import' column to table:list
+  https://github.com/treasure-data/td/issues/6
+
+== 2012-12-10 version 0.10.64
+
+* td-client v0.8.39
+* Add 'bulk_import' to "Basic commands" list
+
+
+== 2012-12-05 version 0.10.63
+
+* bulk_import:prepare_parts handles binary data which is invalid in UTF-8
+
+
+== 2012-12-05 version 0.10.62
+
+* Add --slow option to job:list subcommand.
+
+
+== 2012-11-19 version 0.10.61
+
+* Add --auto-create-table option to table:import subcommand. issue #9
+
+
+== 2012-11-16 version 0.10.60
+
+* td-client v0.8.37
+
+
+== 2012-11-16 version 0.10.59
+
+* td-client v0.8.35
+* td-logger v0.3.16
+* remove json gem from dependency
+
+
+== 2012-11-02 version 0.10.58
+
+* status and table:list display each table size
+
+
+== 2012-10-30 version 0.10.57
+
+* job:show and query subcommands support --format 'msgpack.gz' option
+* query subcommand reads SQL from STDIN if the first argument is '-'
+
+
+== 2012-10-11 version 0.10.56
+
+* Updated td-client v0.8.33 which supports deflate and gzip compressed data
+transfer
+
+
+== 2012-10-09 version 0.10.55
+
+* Added table:swap subcommand
+* user:create supports -G option to create an organization at the same time
+
+
+== 2012-10-04 version 0.10.54
+
+* job:result checks invalid byte sequence in UTF-8 string before rendering
+results on console
+
+
+== 2012-10-02 version 0.10.53
+
+* bulk_import:prepare_parts works with Ruby 1.8
+* bulk_import:prepare_parts supports 'msgpack' format
+* bulk_import:prepare_parts supports gzip decompression
+
+
+== 2012-09-26 version 0.10.52
+
+* bulk_import:upload_parts subcommand supports --parallel option to upload
+  files in parallel (default=2, max=8)
+
+
+== 2012-09-21 version 0.10.51
+
+* job:list and job:show show database name
+* Widened display table size of job:list
+
+
+== 2012-09-20 version 0.10.50
+
+* Changed packaging method from Jeweler to Bundler
+* Updated packaging scripts for Windows
+* Updated packaging scripts for Mac OS X
+
+
+== 2012-09-19 version 0.10.49
+
+* query and job:show subcommands support -G, --vertical option
+
+
+== 2012-09-17 version 0.10.48
+
+* Fixed an encoding problem with job:result command to display results
+  to the console
+
+
+== 2012-09-13 version 0.10.47
+
+* Added account:usage subcommand
+* Name length limit is changed from 32 characters to 256 characters
+
+
+== 2012-09-12 version 0.10.45
+
+* bulk_import:prepare_parts supports --true and --false type conversion options
+* bulk_import:prepare_parts supports --time-value option
+* bulk_import:prepare_parts converts /null/i to NULL by default
+
+
+== 2012-09-04 version 0.10.44
+
+* Added password:change subcommand
+
+
+== 2012-09-04 version 0.10.43
+
+* Updated user:password:change subcomamnd
+
+
+== 2012-09-04 version 0.10.42
+
+* Added user:password:change subcomamnd
+
+
+== 2012-08-30 version 0.10.41
+
+* Supports HTTP_PROXY environment variable to use a proxy server
+
+
+== 2012-08-07 version 0.10.40
+
+* Added bulk_import:delete_parts
+* Hide obsoleted bulk_import:upload_part and :delete_part subcommands
+* bulk_import:upload_parts supports --auto-perform option
+
+
+== 2012-08-07 version 0.10.39
+
+* Added bulk_import:prepare_parts and bulk_import:upload_parts subcommands
+
+
+== 2012-08-06 version 0.10.38
+
+* *:list and *:show: subcommands show organization name if it's set
+
+
+== 2012-08-06 version 0.10.37
+
+* Added access control
+  * acl:list
+  * acl:grant <subject> <action> <scope>
+  * acl:revoke <subject> <action> <scope>
+* Added multiuser features
+  * org:list
+  * org:show <name>
+  * org:create <name>
+  * org:delete <name>
+  * user:list
+  * user:show <name>
+  * user:create <name>
+  * user:delete <name>
+  * user:apikey:list <name>
+  * role:list
+  * role:show <name>
+  * role:create <name>
+  * role:delete <name>
+  * role:grant <name> <user>
+  * role:revoke <name> <user>
+
+
+== 2012-07-27 version 0.10.36
+
+* More friendly message for 'td account'
+
+
+== 2012-07-23 version 0.10.35
+
+* Updated td-client-ruby v0.8.20
+
+
+== 2012-07-23 version 0.10.34
+
+* Fixed bulk_import with ruby-1.8
+
+
+== 2012-07-05 version 0.10.33
+
+* Improved compatibility with ruby-1.8.7 when table:import deals with msgpack.gz format
+
+
+== 2012-07-03 version 0.10.32
+
+* Added table:partial_delete subcommand
+* query, sched:create and sched:update subcommands support -P, --priority option
+
+
+== 2012-06-27 version 0.10.31
+
+* table:tail supports -P option which enable pretty printing
+
+
+== 2012-06-26 version 0.10.30
+
+* job:show with -o option doesn't read all data into memory
+
+
+== 2012-06-25 version 0.10.29
+
+* job:list shows 'Type' field
+
+
+== 2012-06-21 version 0.10.28
+
+* query and job:show rescue network related errors and retry upto 10 times
+
+
+== 2012-06-12 version 0.10.27
+
+* Consider binary/text modes for Windows
+
+
+== 2012-06-11 version 0.10.26
+
+* Updated job:list --running, --success and --error options to proceed them on the server
+
+
+== 2012-05-31 version 0.10.25
+
+* Updated dependency: td-logger-0.3.12
+* query subcommand doesn't show progress url which is not implemented
+
+
+== 2012-05-10 version 0.10.24
+
+* Added bulk_import subcommands
+  * bulk_import:list
+  * bulk_import:show <name>
+  * bulk_import:create <name> <db> <table>
+  * bulk_import:upload_part <name> <id> <path.msgpack.gz>
+  * bulk_import:delete_part <name> <id>
+  * bulk_import:perform <name>
+  * bulk_import:error_records <name>
+  * bulk_import:commit <name>
+  * bulk_import:delete <name>
+  * bulk_import:freeze <name>
+  * bulk_import:unfreeze <name>
+
+
+== 2012-04-26 version 0.10.23
+
+* Added result:list, result:create and result:delete subcommands
+* query subcommand supports -r <result URL> option
+* sched:create subcommand supports -r <result URL> option
+* Added table:export subcommand
+
+
+== 2012-04-04 version 0.10.22
+
+* Added missing data/sample_apache.json file
+
+
+== 2012-04-04 version 0.10.21
+
+* Added sample:apache subcommand
+* table:import --json and --msgpack use 'time' as the default value for --time-key option
+
+
+== 2012-04-03 version 0.10.20
+
+* db:list: show number of records
+
+
+== 2012-04-03 version 0.10.19
+
+* job:show: show result column names
+
+
+== 2012-03-12 version 0.10.18
+
+* sched:run shows IDs of submitted jobs
+* Use td-client v0.8.12
+
+
+== 2012-03-01 version 0.10.17
+
+* Use td-client v0.8.11
+
+
+== 2012-02-27 version 0.10.16
+
+* apikey:show shows the apikey if it's already set by heroku-td or -k arguments
+
+
+== 2012-02-27 version 0.10.15
+
+* Updated dependency: td-logger-0.3.8
+* sched:run: shows the scheduled time at the end of command
+
+
+== 2012-02-22 version 0.10.14
+
+* Added sched:update and sched:run
+* sched:list shows 'Database'
+* sched:history shows information of the schedule
+
+
+== 2012-02-21 version 0.10.13
+
+* table:delete asks y/N before deleting a table
+
+
+== 2012-02-02 version 0.10.12
+
+* Use td-client v0.8.8
+
+
+== 2012-02-02 version 0.10.11
+
+* Use SSL in the account subcommand
+
+
+== 2012-01-30 version 0.10.10
+
+* table:tail works without curses
+* set Encoding.default_external = 'UTF-8'
+
+
+== 2012-01-23 version 0.10.9
+
+* table:tail subcommand supports --from option
+* schema:set validates types on the server-side only to support array<...>
+
+
+== 2012-01-19 version 0.10.8
+
+* Updated td-client 0.8.6
+* query: shows 'queued...' instead of 'running...'
+
+
+== 2012-01-19 version 0.10.7
+
+* Fixed job:show on ruby-1.8
+* Fixed command aliases on ruby-1.8
+
+
+== 2011-12-13 version 0.10.6
+
+* Fixed force_encoding error with Ruby 1.8
+
+
+== 2011-12-04 version 0.10.5
+
+* Added new feature: result
+* Added new feature: status
+* Refined usage message
+* Fixed argument length check
+* help subcommand shows command-line examples
+* table:tail subcommand reduced default max row number
+* job:list subcommand supports --running and --error options
+
+
+== 2011-11-11 version 0.10.4
+
+* Updated dependency: td-logger-0.3.7
+
+
+== 2011-11-11 version 0.10.3
+
+* Updated dependency: td-logger-0.3.6
+
+
+== 2011-11-10 version 0.10.2
+
+* Updated dependency: td-logger-0.3.4
+
+
+== 2011-11-10 version 0.10.1
+
+* Updated dependency: td-logger-0.3.3
+
+
+== 2011-11-10 version 0.10.0
+
+* Updated dependency: td-logger-0.3.2
+
+
+== 2011-11-08 version 0.9.12
+
+* Fixed 'undefined method `localtime' for nil:NilClass' error in job subcommand
+
+
+== 2011-10-17 version 0.9.11
+
+* Updated dependency: td-logger-0.2.8
+
+
+== 2011-10-09 version 0.9.10
+
+* Updated dependency: td-logger-0.2.7
+
+
+== 2011-10-06 version 0.9.9
+
+* Updated dependency: td-logger-0.2.5
+
+
+== 2011-10-03 version 0.9.8
+
+* Added table:tail subcommand
+
+
+== 2011-09-30 version 0.9.7
+
+* Use local time zone at job:list and sched:history subcommands
+* Updated dependency: td-logger-0.2.5
+
+
+== 2011-09-13 version 0.9.6
+
+* Implement main routine on TreasureData::Command::Runner to support heroku-td
+* Fixed help message to show options
+
+
+== 2011-09-13 version 0.9.5
+
+* Supports scheduled queries
+
+
+== 2011-09-13 version 0.9.4
+
+* Updated dependency: td-logger-0.2.4
+
+
+== 2011-09-13 version 0.9.3
+
+* Fixed import subcommand
+
+
+== 2011-09-08 version 0.9.2
+
+* Added job:kill subcommand
+* Added apikey:show and apikey:set subcommands
+* requires td-logger for Rails
+* Fixed command/account.rb file is missed
+
+
+== 2011-09-08 version 0.9.1
+
+* Accepts the 'TREASURE_DATA_API_KEY' environment variable to set API key
+
+
+== 2011-09-08 version 0.9.0
+
+* Changed subcommands grammar: action-group -> group:action
+* Fixed import subcommand to strip \n
+
+
+== 2011-08-21 version 0.8.0
+
+* Splits API libraries to td-client gem
+
+
+== 2011-08-18 version 0.7.5
+
+* set-schema: adds column instead of replacing all columns
+* set-schema: adds -R, --reset option
+
+
+== 2011-08-18 version 0.7.4
+
+* Added set-schema subcommand
+* Added describe-table subcommand
+
+
+== 2011-08-15 version 0.7.3
+
+* show-jobs: removed --from and --around options
+* changed library namespace from TD to TreasureData
+
+
+== 2011-08-15 version 0.7.2
+
+* Supports TD_API_KEY and TD_CONFIG_PATH environment variable
+* query, show-job: supports --output and --format options
+* show-jobs: supports --page, --skip, --from and --around options
+
+
+== 2011-08-15 version 0.7.1
+
+* Validate name of a database/table on create-database/create-log-table
+subcommands
+* -d, --database DB_NAME option is now required on query subcommand
+* Uses /v3/job/result?format=msgpack API to get result of a job
+* API server can be changed using TD_API_SERVER=HOST:PORT environment variable
+
+
+== 2011-08-06 version 0.7.0
+
+* import subcommand accepts UNIX time integer value on --json and --msgpack format
+* Renamed command name (trd -> td)
+
+
+== 2011-07-18 version 0.6.3
+
+* show-jobs: shows elapsed time
+* query: updated behavior of the -w option for new api
+* import: supported --json and --msgpack format
+* Added 'version' command
+
+
+== 2011-06-27 version 0.6.2
+

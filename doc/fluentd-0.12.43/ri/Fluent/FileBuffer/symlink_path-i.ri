@@ -1,0 +1,2 @@
+U:RDoc::Attr[iI"symlink_path:ETI"$Fluent::FileBuffer#symlink_path;TI"RW;T:publico:RDoc::Markup::Document:@parts[o:RDoc::Markup::Paragraph;	[I"4'symlink_path' is currently only for out_file. ;TI"IThat is the reason why this is not config_param, but attr_accessor. ;TI"4See: https://github.com/fluent/fluentd/pull/181;T:
+@fileI""lib/fluent/plugin/buf_file.rb;T:0@omit_headings_from_table_of_contents_below0F@I"Fluent::FileBuffer;TcRDoc::NormalClass0

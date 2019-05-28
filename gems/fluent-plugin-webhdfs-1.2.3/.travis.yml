@@ -1,0 +1,25 @@
+sudo: false
+language: ruby
+
+rvm:
+  - 2.1
+  - 2.2
+  - 2.3.3
+  - 2.4.0
+
+branches:
+  only:
+    - master
+
+addons:
+  apt:
+    packages:
+      - libsnappy-dev
+
+before_install:
+  - gem update bundler
+
+script: bundle exec rake test
+
+gemfile:
+  - Gemfile

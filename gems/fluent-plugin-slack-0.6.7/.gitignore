@@ -1,0 +1,8 @@
+/fluent/
+/pkg/
+/coverage/
+/vendor/
+Gemfile.lock
+tmp/
+.ruby-version
+.env
