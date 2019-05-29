@@ -13,3 +13,10 @@ for i in rules rules.d files_sd; do
   sudo chmod -R 775 /etc/prometheus/${i};
 done
 sudo chown -R prometheus:prometheus /var/lib/prometheus/
+
+
+wget https://repo1.maven.org/maven2/io/prometheus/jmx/jmx_prometheus_javaagent/0.6/jmx_prometheus_javaagent-0.6.jar
+
+wget https://raw.githubusercontent.com/prometheus/jmx_exporter/master/example_configs/kafka-0-8-2.yml
+
+export KAFKA_OPTS='-javaagent:/opt/kafka/jmx_prometheus_javaagent-0.6.jar=7071:/opt/kafka/kafka-0-8-2.yml'
