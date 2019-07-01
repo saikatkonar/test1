@@ -1,0 +1,4 @@
+wget https://dl.grafana.com/oss/release/grafana-5.4.2-1.x86_64.rpm --no-check-certificate
+rpm -ivh grafana-5.4.2-1.x86_64.rpm
+systemctl enable --now grafana-server.service
+systemctl status grafana-server.service
